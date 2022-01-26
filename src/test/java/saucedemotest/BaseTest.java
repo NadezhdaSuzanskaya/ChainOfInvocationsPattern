@@ -16,7 +16,7 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected CatalogPage catalogPage;
-  //  protected CartPage cartPage;
+    protected CartPage cartPage;
   //  protected CheckoutInfoPage checkoutInfoPage;
   //  protected CheckoutOverviewPage checkoutOverviewPage;
   //  protected CheckoutCompletePage checkoutCompletePage;
@@ -47,7 +47,7 @@ public class BaseTest {
         //     driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
         loginPage = new LoginPage(driver);
         catalogPage = new CatalogPage(driver);
-     //   cartPage = new CartPage(driver);
+        cartPage = new CartPage(driver);
      //   checkoutInfoPage = new CheckoutInfoPage(driver);
      //   checkoutOverviewPage = new CheckoutOverviewPage(driver);
      //   checkoutCompletePage = new CheckoutCompletePage(driver);

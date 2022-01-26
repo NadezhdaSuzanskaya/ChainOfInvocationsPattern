@@ -46,8 +46,9 @@ public class CatalogPage extends BasePage {
         this.basePageElementId = TITLE_LOCATOR;
     }
 
-    public void addProductToCart(String partialProductTitle) {
+    public CatalogPage addProductToCart(String partialProductTitle) {
         driver.findElement(By.xpath(String.format(PRODUCT_XPATH_PATTERN, partialProductTitle))).click();
+        return new CatalogPage(driver);
     }
 
     public String getCountOfProductInCart() {
@@ -72,13 +73,14 @@ public class CatalogPage extends BasePage {
     }
 
 
-    public void logout() {
+    public LoginPage logout() {
         driver.findElement(MENU_BUTTON).click();
         wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOfElementLocated(ICON_CLOSE));
         //проверить что на выплывающей панеле есть крестик
         driver.findElement(LOGOUT_BUTTON).click();
         //проверить что открыта неавторизованная страница
+        return new LoginPage(driver);
     }
 
     public void returnToOriginalState() {
