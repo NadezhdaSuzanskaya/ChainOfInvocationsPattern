@@ -17,9 +17,9 @@ public class BaseTest {
     protected LoginPage loginPage;
     protected CatalogPage catalogPage;
     protected CartPage cartPage;
-  //  protected CheckoutInfoPage checkoutInfoPage;
-  //  protected CheckoutOverviewPage checkoutOverviewPage;
-  //  protected CheckoutCompletePage checkoutCompletePage;
+    protected CheckoutInfoPage checkoutInfoPage;
+    protected CheckoutOverviewPage checkoutOverviewPage;
+    protected CheckoutCompletePage checkoutCompletePage;
 
     public static final String USERNAME = "standard_user";
     public static final String PASSWORD = "secret_sauce";
@@ -48,9 +48,9 @@ public class BaseTest {
         loginPage = new LoginPage(driver);
         catalogPage = new CatalogPage(driver);
         cartPage = new CartPage(driver);
-     //   checkoutInfoPage = new CheckoutInfoPage(driver);
-     //   checkoutOverviewPage = new CheckoutOverviewPage(driver);
-     //   checkoutCompletePage = new CheckoutCompletePage(driver);
+        checkoutInfoPage = new CheckoutInfoPage(driver);
+        checkoutOverviewPage = new CheckoutOverviewPage(driver);
+        checkoutCompletePage = new CheckoutCompletePage(driver);
     }
 
     @AfterClass(alwaysRun=true)

@@ -22,6 +22,8 @@ public class CartPage extends BasePage {
     private static final String COUNT_ICON ="[class='shopping_cart_badge']";
 
 
+
+
     public CartPage(WebDriver driver) {
         super(driver);
         this.baseUrl = BASE_URL;
@@ -41,9 +43,10 @@ public class CartPage extends BasePage {
         return driver.findElement(By.xpath(String.format(PRODUCT_DESC_LOCATOR, partialProductTitle))).getText();
     }
 
-    public void checkout() {
+    public CheckoutInfoPage checkout() {
 
         driver.findElement(BUTTON_CHECKOUT).click();
+        return new CheckoutInfoPage(driver);
     }
 
     public void returnToProductsPage() {
