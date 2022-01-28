@@ -14,12 +14,12 @@ public class ProductTest extends BaseTest {
 
     @BeforeMethod
     private void login() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
                         .open()
                         .isPageLoaded()
                 , "Login page is not loaded");
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
                         .login(USERNAME, PASSWORD)
                         .open()
@@ -32,7 +32,7 @@ public class ProductTest extends BaseTest {
         //add test product to cart
 
         catalogPage.addProductToCart(TEST_PRODUCT_TITLE);
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 cartPage
                         .open()
                         .isPageLoaded()
@@ -51,7 +51,7 @@ public class ProductTest extends BaseTest {
 
     @Test
     public void logoutTest() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 catalogPage
                         .logout()
                         .open()

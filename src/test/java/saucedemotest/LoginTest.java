@@ -13,7 +13,7 @@ public class LoginTest extends BaseTest {
 
     @BeforeMethod
     public void openLoginPage() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
                         .open()
                         .isPageLoaded()
@@ -22,8 +22,10 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void validCredentialsLoginTest() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
+                        .open()
+                        .isPageLoaded()
                         .login(USERNAME, PASSWORD)
                         .open()
                         .isPageLoaded()

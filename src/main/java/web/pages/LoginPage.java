@@ -1,7 +1,9 @@
 package web.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class LoginPage extends BasePage {
 
@@ -9,8 +11,22 @@ public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver) {
         super(driver);
-        this.baseUrl = BASE_URL;
-        this.basePageElementId = LOGIN_BUTTON;
+    }
+
+    @Override
+    public LoginPage isPageLoaded() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(LOGIN_BUTTON));
+        } catch (TimeoutException timeoutException) {
+            return null;
+        }
+        return this;
+    }
+
+    @Override
+    public LoginPage open() {
+        driver.get(BASE_URL);
+        return this;
     }
 
     private static final By USERNAME_TEXT_FIELD = By.id("user-name");

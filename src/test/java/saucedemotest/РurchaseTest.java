@@ -13,12 +13,12 @@ public class РurchaseTest extends BaseTest {
 
     @BeforeMethod
     private void login() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
                         .open()
                         .isPageLoaded()
                 , "Login page is not loaded");
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 loginPage
                         .login(USERNAME, PASSWORD)
                         .open()
@@ -33,7 +33,7 @@ public class РurchaseTest extends BaseTest {
         catalogPage.addProductToCart(TEST_PRODUCT_TITLE);
 
         //the page cart
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 cartPage
                         .open()
                         .isPageLoaded()
@@ -41,13 +41,13 @@ public class РurchaseTest extends BaseTest {
         //check that in the cart is the same product that was added from the list of products
         checkNameOfProductInCart();
         checkProductDetailsInCart(price, desc);
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 cartPage
                         .checkout()
                         .open()
                         .isPageLoaded()
                 , "CheckoutInfo  page is not loaded");
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 checkoutInfoPage
                         .enterData(FIRST_NAME, LAST_NAME, ZIP_CODE)
                         .clickContinue()
@@ -56,7 +56,7 @@ public class РurchaseTest extends BaseTest {
                 , "Checkout Overage  page is not loaded");
 
         checkProductInSecondConfirmationPage(price, desc);
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 checkoutOverviewPage
                         .clickFinish()
                         .open()
@@ -92,7 +92,7 @@ public class РurchaseTest extends BaseTest {
     public void checkCounIconInCartTest() {
         String str1 = "";
         catalogPage.addProductToCart(TEST_PRODUCT_TITLE);
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 cartPage
                         .open()
                         .isPageLoaded()
@@ -103,7 +103,7 @@ public class РurchaseTest extends BaseTest {
 
     @Test
     public void checkEmptyIconInCartTest() {
-        Assert.assertTrue(
+        Assert.assertNotNull(
                 cartPage
                         .open()
                         .isPageLoaded()

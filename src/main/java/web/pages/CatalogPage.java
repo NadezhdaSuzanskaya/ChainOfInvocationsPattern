@@ -1,6 +1,7 @@
 package web.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,12 +39,25 @@ public class CatalogPage extends BasePage {
     private static final String PRODUCT_BUTTON =
             "//div[@class='inventory_item']//button";
 
-    public WebDriverWait wait;
 
     public CatalogPage(WebDriver driver) {
         super(driver);
-        this.baseUrl = BASE_URL;
-        this.basePageElementId = TITLE_LOCATOR;
+    }
+
+    @Override
+    public BasePage isPageLoaded() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(TITLE_LOCATOR));
+        } catch (TimeoutException timeoutException) {
+            return null;
+        }
+        return this;
+    }
+
+    @Override
+    public BasePage open() {
+        driver.get(BASE_URL);
+        return this;
     }
 
     public CatalogPage addProductToCart(String partialProductTitle) {

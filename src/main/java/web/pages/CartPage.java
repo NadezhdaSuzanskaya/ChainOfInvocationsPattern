@@ -1,8 +1,10 @@
 package web.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -19,15 +21,27 @@ public class CartPage extends BasePage {
     private static final String PRODUCT_PRICE_LOCATOR = "//div[contains(text(),'%s')]/ancestor::div[@class='cart_item']//div[@class='inventory_item_price']";
     //  private static final String LIST_OF_PRODUCT_IN_CART = "//div[@class='cart_item']";
     private static final String LIST_OF_PRODUCT_IN_CART = "//div[@class='cart_item']//div[@class='inventory_item_name']";
-    private static final String COUNT_ICON ="[class='shopping_cart_badge']";
-
-
+    private static final String COUNT_ICON = "[class='shopping_cart_badge']";
 
 
     public CartPage(WebDriver driver) {
         super(driver);
-        this.baseUrl = BASE_URL;
-        this.basePageElementId = TITLE_LOCATOR;
+    }
+
+    @Override
+    public BasePage isPageLoaded() {
+        try {
+            wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(TITLE_LOCATOR));
+        } catch (TimeoutException timeoutException) {
+            return null;
+        }
+        return this;
+    }
+
+    @Override
+    public BasePage open() {
+        driver.get(BASE_URL);
+        return this;
     }
 
     public String findProductByNameInCard(String partialProductTitle) {
