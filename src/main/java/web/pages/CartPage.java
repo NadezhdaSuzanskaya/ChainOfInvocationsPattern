@@ -12,6 +12,7 @@ import java.util.List;
 public class CartPage extends BasePage {
 
     public static final String BASE_URL = "https://www.saucedemo.com/cart.html";
+    public static final String TEST_PRODUCT_TITLE = "Test.allTheThings() T-Shirt (Red)";
 
     private static final By TITLE_LOCATOR = By.xpath("//span[@class='title' and text()='Your Cart']");
     private static final By PRODUCRT_NAME_LOCATOR = By.className("inventory_item_name");

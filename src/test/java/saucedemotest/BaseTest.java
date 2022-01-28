@@ -5,6 +5,8 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import org.testng.asserts.SoftAssert;
+import steps.PurchaseSteps;
 import web.pages.*;
 
 import java.io.File;
@@ -20,7 +22,9 @@ public class BaseTest {
     protected CheckoutInfoPage checkoutInfoPage;
     protected CheckoutOverviewPage checkoutOverviewPage;
     protected CheckoutCompletePage checkoutCompletePage;
+    protected PurchaseSteps purchaseSteps;
 
+    protected SoftAssert softAssert = new SoftAssert();
     public static final String USERNAME = "standard_user";
     public static final String PASSWORD = "secret_sauce";
 
@@ -33,6 +37,7 @@ public class BaseTest {
 
     public static final String EMPTY_NAME = "";
     public static final String EMPTY_PASSWORD = "";
+
 
 
 
@@ -51,12 +56,19 @@ public class BaseTest {
         checkoutInfoPage = new CheckoutInfoPage(driver);
         checkoutOverviewPage = new CheckoutOverviewPage(driver);
         checkoutCompletePage = new CheckoutCompletePage(driver);
+        purchaseSteps = new PurchaseSteps(cartPage);
+        purchaseSteps.setSoftAssert(softAssert);
+
     }
+
+
 
     @AfterClass(alwaysRun=true)
     public void teardown() {
         driver.close();
         driver.quit();
+
+
     }
 
 }

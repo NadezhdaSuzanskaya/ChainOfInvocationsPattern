@@ -27,6 +27,7 @@ public abstract class BasePage {
     public abstract BasePage isPageLoaded();
     public abstract BasePage open();
 
+
  /*   public BasePage open() {
         driver.get(baseUrl);
         return this;
